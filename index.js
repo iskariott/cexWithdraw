@@ -1,4 +1,4 @@
-import fs, { lchown } from 'fs';
+import fs from 'fs';
 import { api, chooseList, chooseNumber, randomFromInterval, timer } from './utils.mjs';
 import { Tokens } from './constants.mjs';
 
@@ -29,6 +29,11 @@ async function processData() {
     const token = await chooseList('Choose token', Tokens);
     data.token = token;
     const currencieData = await api.getCurrencies(token);
+    if (!currencieData.length) {
+      data.wallets = [];
+      console.log(`\x1b[31m${token} token doesnt exist.\x1b[0m`);
+      return;
+    }
     const chainsData = currencieData.map((itm) => ({
       minWd: itm.minWd,
       minFee: itm.minFee,
@@ -111,15 +116,16 @@ async function sendTokens() {
         console.log('\x1b[31m', 'Remaining balance: ', data.tokenBalance);
         break;
       }
-      // const resp = await api.submitWithdraw({
-      //   amt: '0.1',
-      //   fee: '0.001',
-      //   dest: '4',
-      //   toAddr: '0xFc9fa9C165fed67Cf12aC2F170df3d55776e6E86',
-      //   ccy: 'CORE',
-      // });
+      const resp = await api.submitWithdraw({
+        amt: amount,
+        fee: data.minFee,
+        dest: '4',
+        toAddr: wallet,
+        chain: data.chain,
+        ccy: data.token,
+      });
       console.log(
-        `${idx}. Sent \x1b[33m ${amount} \x1b[0m${data.token} (${data.chain}) to \x1b[34m${wallet}\x1b[0m`,
+        `${idx}. Sent \x1b[33m ${resp.amt} \x1b[0m${resp.ccy} (${resp.chain}) to \x1b[34m${wallet}\x1b[0m`,
       );
       data.tokenBalance -= amount + data.minFee;
       console.log('Remaining balance: ', data.tokenBalance);
