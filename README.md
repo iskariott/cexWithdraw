@@ -7,7 +7,7 @@
  
 1. Install [node.js](https://nodejs.org/en/download) if it is not already installed.
 
-To check that `node.js` is installed, write the command in the cmd
+   To check that `node.js` is installed, write the command in the cmd
 ```ruby
 ~node -v
 v18.13.0
@@ -29,7 +29,7 @@ v18.13.0
  
 1. Install [node.js](https://nodejs.org/en/download) if it is not already installed.
 
-To check that `node.js` is installed, write the command in the cmd
+   To check that `node.js` is installed, write the command in the cmd
 ```ruby
 ~node -v
 v18.13.0
