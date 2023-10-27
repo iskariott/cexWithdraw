@@ -9,7 +9,7 @@
 
    To check that `node.js` is installed, write the command in the cmd
 ```ruby
-~node -v
+> node -v
 v18.13.0
 ```
 2. Create [okx api](https://www.okx.com/ua/account/my-api) with the ability to withdraw funds and save your `apikey`, `secretKey` and `password` in a safe place.
@@ -31,7 +31,7 @@ v18.13.0
 
    To check that `node.js` is installed, write the command in the cmd
 ```ruby
-~node -v
+> node -v
 v18.13.0
 ```
 2. Create [binance api](https://www.binance.com/uk-UA/my/settings/api-management) with the ability to withdraw funds and save your `apikey` and `secretKey` in a safe place.
@@ -45,11 +45,11 @@ v18.13.0
 
 1. Clone or download this repo.
 2. Add addresses from Whitelist to `wallets.txt`
-3. Insert your api data to `privateKeys.mjs`
-4. Go to root folder and run
+3. Insert your api data to `privateKeys.mjs` (separately for every cex)
+4. Go to the root folder and run
 ```ruby
-~nmp install
-~npm start
+> nmp install
+> npm start
 ```
 
 ### Functional
