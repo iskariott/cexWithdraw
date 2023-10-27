@@ -21,7 +21,8 @@
 1. Clone or download this repo.
 2. Add addresses from Whitelist to `wallets.txt`
 3. Insert your `apikey`, `secretKey` and `password` in `privateKeys.mjs`
-4. Run `npm start` in tokenSender directory
+4. Run `npm install` in tokenSender directory
+5. Run `npm start`
 
 ### Functional
 
