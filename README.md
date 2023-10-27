@@ -1,5 +1,5 @@
 > [!IMPORTANT]
-> This script does not store or send any information. All your private data is stored only on your computer. Please keep your api token data in a safe place, because an attacker can steal all your funds if he takes possession of it !!!
+> This script does not store any private information. All your private data is stored only on your computer. Please keep your api data in a safe place, because an attacker can steal all your funds if he takes possession of it!
 
 ### Previous preparation
 <details>
