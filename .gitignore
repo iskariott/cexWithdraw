@@ -1,1 +1,4 @@
 node_modules
+/okx/private.keys.mjs
+/binance/private.keys.mjs
+wallets.txt
