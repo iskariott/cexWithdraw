@@ -1,4 +1,4 @@
-import { chooseList, timer } from '../common.mjs';
+import { chooseList, CLITimer } from '../common.mjs';
 import { Tokens } from './constants.mjs';
 import { APIKEY, SecretKey } from './private.keys.mjs';
 import { Spot } from '@binance/connector';
@@ -11,7 +11,7 @@ export async function getTokenData() {
     const { free, networkList } = await api
       .coinInfo()
       .then((r) => r.data.find((itm) => itm.coin === token));
-
+    console.log('here');
     let chain = '';
     if (networkList.length === 1) {
       chain = networkList[0].network;
@@ -35,7 +35,8 @@ export async function getTokenData() {
 
     return { token, tokenBalance: free, chain, minFee, minWd };
   } catch (error) {
-    throw error;
+    console.log('getTokenData error: ');
+    throw error.response.data.msg;
   }
 }
 
@@ -44,7 +45,7 @@ export async function withdraw(wallets, tokenData, rangeData) {
   try {
     let idx = 1;
     for (let wallet of wallets) {
-      if (idx !== 1) await timer(rangeData.getDelay());
+      if (idx !== 1) await CLITimer(Math.floor(rangeData.getDelay()));
       const amount = rangeData.getAmount();
       if (tokenData.tokenBalance < amount + tokenData.minFee) {
         console.log(
@@ -64,6 +65,7 @@ export async function withdraw(wallets, tokenData, rangeData) {
       idx++;
     }
   } catch (error) {
+    console.log('withdraw error: ');
     throw error;
   }
 }

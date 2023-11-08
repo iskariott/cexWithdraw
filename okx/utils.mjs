@@ -1,4 +1,4 @@
-import { chooseList, timer } from '../common.mjs';
+import { chooseList, CLITimer } from '../common.mjs';
 import { Tokens } from './constants.mjs';
 import { APIKEY, PassPhrase, SecretKey } from './private.keys.mjs';
 import { RestClient } from 'okx-api';
@@ -52,7 +52,7 @@ export async function withdraw(wallets, rangeData, tokenData) {
   try {
     let idx = 1;
     for (let wallet of wallets) {
-      if (idx !== 1) await timer(rangeData.getDelay());
+      if (idx !== 1) await CLITimer(Math.floor(rangeData.getDelay()));
       const amount = rangeData.getAmount();
       if (tokenData.tokenBalance < amount + tokenData.minFee) {
         console.log('\x1b[31m', 'ABORTED! Not enough balance to send.');

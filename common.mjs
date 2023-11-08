@@ -1,13 +1,25 @@
 import inquirer from 'inquirer';
 import fs from 'fs';
+import readline from 'readline';
 
-export const timer = (s) => new Promise((res) => setTimeout(res, s * 1000));
+// export const timer = (s) => new Promise((res) => setTimeout(res, s * 1000));
 
 function randomFromInterval(min, max) {
   function func() {
     return Number((Math.random() * (Number(max) - Number(min)) + Number(min)).toFixed(6));
   }
   return func;
+}
+
+function shuffle(array) {
+  let currentIndex = array.length;
+  while (currentIndex > 0) {
+    const randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+    [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+  }
+
+  return array;
 }
 
 export async function readWallets() {
@@ -27,7 +39,7 @@ export async function readWallets() {
       { name: 'No', value: false },
     ]);
 
-    return isRandomizeWallets ? wallets.sort(() => Math.random() - 0.5) : wallets;
+    return isRandomizeWallets ? shuffle(wallets) : wallets;
   } catch (error) {
     throw error;
   }
@@ -113,4 +125,27 @@ export async function setRange(minWd, tokenBalance) {
   } catch (error) {
     throw error;
   }
+}
+
+export function CLITimer(time_s) {
+  return new Promise((resolve) => {
+    function updateLine(content, finished = false) {
+      readline.clearLine(process.stdout, 0);
+      readline.cursorTo(process.stdout, 0);
+      !finished && process.stdout.write(`\x1b[32mDelay: ${content}s\x1b[0m`);
+    }
+
+    updateLine(time_s);
+    let timer = setInterval(() => {
+      time_s -= 1;
+
+      if (time_s <= 0) {
+        clearInterval(timer);
+        updateLine(0, true);
+        resolve();
+      } else {
+        updateLine(time_s);
+      }
+    }, 1000);
+  });
 }
