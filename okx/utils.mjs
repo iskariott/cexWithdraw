@@ -59,15 +59,15 @@ export async function withdraw(wallets, rangeData, tokenData) {
         console.log('\x1b[31m', 'Remaining balance: ', tokenData.tokenBalance);
         break;
       }
-      // const resp = await api.submitWithdraw({
-      //   amt: amount,
-      //   fee: tokenData.minFee,
-      //   dest: '4',
-      //   toAddr: wallet,
-      //   chain: tokenData.chain,
-      //   ccy: tokenData.token,
-      // });
-      const resp = [{ amt: amount, ccy: tokenData.token, chain: tokenData.chain }];
+      const resp = await api.submitWithdraw({
+        amt: amount,
+        fee: tokenData.minFee,
+        dest: '4',
+        toAddr: wallet,
+        chain: tokenData.chain,
+        ccy: tokenData.token,
+      });
+      // const resp = [{ amt: amount, ccy: tokenData.token, chain: tokenData.chain }];
       console.log(
         `${idx}. Sent \x1b[33m ${resp[0].amt} \x1b[0m${resp[0].ccy} (${resp[0].chain}) to \x1b[34m${wallet}\x1b[0m`,
       );
