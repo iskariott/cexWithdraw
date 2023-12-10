@@ -45,7 +45,7 @@ v18.13.0
 
 1. Clone or download this repo.
 2. In root dir create file `wallets.txt` and add addresses there.
-3. In folder binance and okx create file `privateKeys.mjs` (separately for every folder) and insert your api data
+3. In folder binance and okx create file `private.keys.mjs` (separately for every folder) and insert your api data
 
 file: `binance/private.keys.mjs`
 ```
