@@ -11,9 +11,10 @@ export const DELAY = [40, 120];
 export const TOKEN = 'ETH';
 
 /*
-BINANCE або OKX
+0 - binance
+1 - okx
 */
-export const CEX = 'BINANCE';
+export const CEX = 1;
 
 /*
 Перемішати кошельки перед виводом

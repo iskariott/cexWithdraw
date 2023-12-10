@@ -23,7 +23,7 @@ export async function getTokenData() {
 
     let chain = '';
     if (chainsData.length === 1) {
-      chain = chainsData.chain;
+      chain = chainsData[0].chain;
       console.log('Chain: ', chain);
     } else {
       chain = await chooseList(
