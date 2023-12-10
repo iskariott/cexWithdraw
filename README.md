@@ -47,15 +47,17 @@ v18.13.0
 2. In root dir create file `wallets.txt` and add addresses there.
 3. In folder binance and okx create file `privateKeys.mjs` (separately for every folder) and insert your api data
 
-binance
-
-![image](https://github.com/iskariott/cexWithdraw/assets/97576455/2b02b1e9-d2ef-430b-bf84-b1f1325133e9)
-
-okx
-
-![image](https://github.com/iskariott/cexWithdraw/assets/97576455/494846f0-27bb-4efa-847d-1e89b3c48755)
-
-
+file: `binance/private.keys.mjs`
+```
+export const APIKEY = 'your api key';
+export const SecretKey = 'your secret key';
+```
+file: `okx/private.keys.mjs`
+```
+export const APIKEY = 'your api key';
+export const SecretKey = 'your secret key';
+export const PassPhrase = 'your passphrase';
+```
 5. Configure script in file `config.js`
 6. Open cmd in root folder and run
 ```ruby
