@@ -44,29 +44,23 @@ v18.13.0
 ### Script usage
 
 1. Clone or download this repo.
-2. Add addresses from Whitelist to `wallets.txt`
-3. Insert your api data to `privateKeys.mjs` (separately for every cex)
-4. Go to the root folder and run
+2. In root dir create file `wallets.txt` and add addresses there.
+3. In folder binance and okx create file `private.keys.mjs` (separately for every folder) and insert your api data
+
+file: `binance/private.keys.mjs`
+```
+export const APIKEY = 'your api key';
+export const SecretKey = 'your secret key';
+```
+file: `okx/private.keys.mjs`
+```
+export const APIKEY = 'your api key';
+export const SecretKey = 'your secret key';
+export const PassPhrase = 'your passphrase';
+```
+5. Configure script in file `config.js`
+6. Open cmd in root folder and run
 ```ruby
 > nmp install
 > npm start
 ```
-
-### Functional
-
-1. Send tokens to wallets in a random order?
-<p align="left">
- <img src="https://github.com/iskariott/cexWithdraw/assets/97576455/734ec9ac-ea2f-44a8-989e-d3e3eef03bd1" >
-</p>
-
-2. Choose token and chain
-3. Set range from/to token amount in order to randomize each withdrawal
-4. Set range from/to delay to randomize the delay between each operation
-<p align="left">
- <img src="https://github.com/iskariott/cexWithdraw/assets/97576455/d2af0624-21a5-4ce4-9610-82929fcb3111" >
-</p>
-
-5. If you run out of funds while the script is running, it will notify you and terminate the work
-<p align="left">
- <img src="https://github.com/iskariott/cexWithdraw/assets/97576455/744ed2cb-622d-4e3f-b44e-81e4f569004d" >
-</p>
