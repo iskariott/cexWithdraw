@@ -1,10 +1,11 @@
 import inquirer from 'inquirer';
 import fs from 'fs';
 import readline from 'readline';
+import { RANDOMIZE_WALLETS } from './config.js';
 
 // export const timer = (s) => new Promise((res) => setTimeout(res, s * 1000));
 
-function randomFromInterval(min, max) {
+export function randomFromInterval(min, max) {
   function func() {
     return Number((Math.random() * (Number(max) - Number(min)) + Number(min)).toFixed(6));
   }
@@ -34,12 +35,7 @@ export async function readWallets() {
       throw new Error('Wallets.txt is empty!');
     }
 
-    const isRandomizeWallets = await chooseList('Randomize wallets?', [
-      { name: 'Yes', value: true },
-      { name: 'No', value: false },
-    ]);
-
-    return isRandomizeWallets ? shuffle(wallets) : wallets;
+    return RANDOMIZE_WALLETS ? shuffle(wallets) : wallets;
   } catch (error) {
     throw error;
   }
@@ -100,28 +96,7 @@ export async function setRange(minWd, tokenBalance) {
       } else amountTo = resp;
     }
 
-    const getAmount = randomFromInterval(amountFrom, amountTo);
-
-    let delayFrom = 0;
-    while (!delayFrom) {
-      const resp = await chooseNumber('Delay range from (seconds)');
-      if (isNaN(Number(resp))) {
-        console.log('\x1b[31m', 'You need to provide a number');
-      } else delayFrom = Number(resp);
-    }
-
-    let delayTo = 0;
-    while (!delayTo) {
-      const resp = await chooseNumber('Delay range to (seconds)');
-      if (isNaN(Number(resp))) {
-        console.log('\x1b[31m', 'You need to provide a number');
-      } else if (resp <= delayFrom) {
-        console.log('\x1b[31m', 'This number should be bigger than Delay from');
-      } else delayTo = Number(resp);
-    }
-
-    const getDelay = randomFromInterval(delayFrom, delayTo);
-    return { getDelay, getAmount };
+    return randomFromInterval(amountFrom, amountTo);
   } catch (error) {
     throw error;
   }

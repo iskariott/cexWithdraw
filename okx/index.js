@@ -5,8 +5,8 @@ export default async function runOkx() {
   try {
     const wallets = await readWallets();
     const tokenData = await getTokenData();
-    const rangeData = await setRange(tokenData.minWd, tokenData.tokenBalance);
-    await withdraw(wallets, rangeData, tokenData);
+    const getAmount = await setRange(tokenData.minWd, tokenData.tokenBalance);
+    await withdraw(wallets, getAmount, tokenData);
   } catch (error) {
     console.log(error);
   }

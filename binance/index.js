@@ -5,8 +5,8 @@ export default async function runBinance() {
   try {
     const wallets = await readWallets();
     const tokenData = await getTokenData();
-    const rangeData = await setRange(tokenData.minWd, tokenData.tokenBalance);
-    await withdraw(wallets, tokenData, rangeData);
+    const getAmount = await setRange(tokenData.minWd, tokenData.tokenBalance);
+    await withdraw(wallets, tokenData, getAmount);
   } catch (error) {
     console.log(error);
   }

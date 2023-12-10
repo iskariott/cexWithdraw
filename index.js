@@ -1,12 +1,8 @@
-import { chooseList } from './common.mjs';
+import { CEX } from './config.js';
 
 (async () => {
-  const entryPoint = await chooseList('', [
-    { name: 'OKX', value: 'OKX' },
-    { name: 'Binance', value: 'Binance' },
-  ]);
-  switch (entryPoint) {
-    case 'Binance':
+  switch (CEX) {
+    case 'BINANCE':
       const { default: runBinance } = await import('./binance/index.js');
       runBinance();
       break;
