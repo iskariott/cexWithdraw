@@ -2,19 +2,19 @@
 Затримка між акаунотами в секундах.
 Перше число мінімальна, друге максимальна
 */
-export const DELAY = [40, 120];
+export const DELAY = [1000, 2000];
 
 /*
 Токен який буде виводитись з біржі.
 Назва повинна бути точно така сама як на біржі з якої виводиш
 */
-export const TOKEN = 'ETH';
+export const TOKEN = 'MATIC';
 
 /*
 0 - binance
 1 - okx
 */
-export const CEX = 1;
+export const CEX = 0;
 
 /*
 Перемішати кошельки перед виводом

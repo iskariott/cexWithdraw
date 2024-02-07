@@ -1,4 +1,5 @@
 node_modules
 /okx/private.keys.mjs
 /binance/private.keys.mjs
+/huobi/private.keys.js
 wallets.txt
